@@ -3,6 +3,7 @@ import 'package:movie_app/config/constants/environment.dart';
 import 'package:movie_app/domain/datasources/movies_datasource.dart';
 import 'package:movie_app/domain/entities/movie.dart';
 import 'package:movie_app/infrastructure/mappers/movie_mapper.dart';
+import 'package:movie_app/infrastructure/models/moviedb/movie_details.dart';
 import 'package:movie_app/infrastructure/models/moviedb/moviedb_response.dart';
 
 class MoviedbDatasource extends MoviesDatasource {
@@ -32,7 +33,7 @@ class MoviedbDatasource extends MoviesDatasource {
     );
     return _jsonToMovie(response.data);
   }
-  
+
   @override
   Future<List<Movie>> getPopular({int page = 1}) async {
     final response = await dio.get(
@@ -43,7 +44,7 @@ class MoviedbDatasource extends MoviesDatasource {
     );
     return _jsonToMovie(response.data);
   }
-  
+
   @override
   Future<List<Movie>> getTopRated({int page = 1}) async {
     final response = await dio.get(
@@ -54,7 +55,7 @@ class MoviedbDatasource extends MoviesDatasource {
     );
     return _jsonToMovie(response.data);
   }
-  
+
   @override
   Future<List<Movie>> getUpcoming({int page = 1}) async {
     final response = await dio.get(
@@ -64,5 +65,21 @@ class MoviedbDatasource extends MoviesDatasource {
       },
     );
     return _jsonToMovie(response.data);
+  }
+
+  @override
+  Future<Movie> getMovieById(String movieId) async {
+    final response = await dio.get(
+      '/movie/$movieId',
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Movie with id: $movieId not found');
+    }
+
+    final movieDb = MovieDetails.fromJson(response.data);
+    final Movie movie = MovieMapper.movieDetailsToEntity(movieDb);
+
+    return movie;
   }
 }
