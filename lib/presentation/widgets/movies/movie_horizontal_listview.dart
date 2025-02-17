@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/config/helpers/human_formats.dart';
-import 'package:movie_app/config/router/app_router.dart';
 import 'package:movie_app/domain/entities/movie.dart';
 
 class MovieHorizontalListview extends StatefulWidget {

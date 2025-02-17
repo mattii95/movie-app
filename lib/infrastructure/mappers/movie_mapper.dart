@@ -17,7 +17,7 @@ class MovieMapper {
         posterPath: (movieDb.posterPath != '')
             ? 'https://image.tmdb.org/t/p/w500${movieDb.posterPath}'
             : 'https://rscomputacion.com/wp-content/themes/ryse/assets/images/no-image/No-Image-Found-400x264.png',
-        releaseDate: movieDb.releaseDate,
+        releaseDate: movieDb.releaseDate != null ? movieDb.releaseDate! : DateTime.now(),
         title: movieDb.title,
         video: movieDb.video,
         voteAverage: movieDb.voteAverage,
