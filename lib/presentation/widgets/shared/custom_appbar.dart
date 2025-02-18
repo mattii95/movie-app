@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_app/domain/entities/movie.dart';
 import 'package:movie_app/presentation/delegates/search_movie_delegate.dart';
-import 'package:movie_app/presentation/providers/movies/movies_repository_provider.dart';
 import 'package:movie_app/presentation/providers/search/search_movies_provider.dart';
 
 class CustomAppbar extends ConsumerWidget {
